@@ -1,6 +1,6 @@
 {
   "name": "@purfect/engine",
-  "version": "0.1.0-alpha11",
+  "version": "0.1.0-alpha12",
   "description": "React app engine",
   "bin": {
     "purfect-engine": "bin/scripts.js"
