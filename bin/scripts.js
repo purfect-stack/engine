@@ -2,6 +2,11 @@
 const path = require('path')
 const webpackConfigPath = path.resolve(__dirname, '..', 'webpack.config.js')
 const CONFIG_ARG = `--config=${webpackConfigPath}`
+const init = require('./init.js')
+
+const isFunction = (obj) => {
+  return !!(obj && obj.constructor && obj.call && obj.apply)
+}
 
 const COMMANDS = {
   start: {
@@ -24,9 +29,18 @@ const COMMANDS = {
       '--mode=production',
       CONFIG_ARG
     ]
-  }
+  },
+  init
 }
-const { command, args = [] } = COMMANDS[process.argv[2]] || {}
+
+const commandEntry = COMMANDS[process.argv[2]]
+
+if (isFunction(commandEntry)) {
+  commandEntry()
+  return
+}
+
+let { command, args = [] } = commandEntry || {}
 
 if (!command) {
   console.log('Purfect Engine: Command not found!')

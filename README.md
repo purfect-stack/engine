@@ -1,6 +1,6 @@
 # Purfect engine
 
-Abstraction over webpack and babel configuration so you don't need to deal with it. It is literraly 0-configuration package, just install and start developing your app.
+Abstraction over webpack and babel configuration so you don't need to deal with it. It is literraly **0-configuration** package, just install and start developing your app.
 
 ### The problem
 
@@ -36,3 +36,19 @@ This module allows to alias all folders that are put under `/src` directory in a
 ### Production build
 
 Generated production build includes minified and compressed version of both `js` and `css` bundles. It also adds `hash` to the filenames ensuring that the cache will be busted on the next release. Assets loaded with `import` statements will also benefit from cash-busting `hashes`.
+
+### Application structure
+
+The only requirement of this package is to ensure that you use following structure:
+
+```
+- src
+  - index.ejs
+  - index.jsx
+```
+
+1. You must have `src` directory which contains your source code and specifically two entry files
+2. `index.ejs` - main html template which is your application entry point. It is compiled to `index.html` during the build step
+3. `index.jsx` - your code entry point. This file is included in your `index.html`
+
+If you are bootstraping new project you can use `purfect-engine init` command to add them automatically

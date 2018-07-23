@@ -1,14 +1,7 @@
 {
   "name": "@purfect/engine",
-  "version": "0.1.0",
+  "version": "0.1.0-alpha11",
   "description": "React app engine",
-  "main": "index.js",
-  "scripts": {
-    "start": "webpack-dev-server --mode development",
-    "start:prod": "webpack-dev-server --mode production",
-    "build": "webpack --mode production",
-    "test": "webpack-dev-server --config ./webpack.js"
-  },
   "bin": {
     "purfect-engine": "bin/scripts.js"
   },
@@ -59,5 +52,9 @@
     "webpack-cli": "2.1.5",
     "webpack-dev-server": "3.1.4",
     "webpack-encoding-plugin": "0.2.1"
+  },
+  "devDependencies": {
+    "copy": "^0.3.2",
+    "copy-dir": "^0.4.0"
   }
 }
