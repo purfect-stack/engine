@@ -52,7 +52,8 @@ const ASSETS_LOADER = {
     {
       loader: 'file-loader',
       options: {
-        name: '[path][name].[ext]'
+        name: '[path][name].[ext]',
+        context: __dirname
       }
     }
   ]
@@ -60,7 +61,22 @@ const ASSETS_LOADER = {
 const JS_LOADER = {
   test: /\.jsx?$/,
   exclude: /node_modules/,
-  use: ['babel-loader']
+  use: {
+    loader: 'babel-loader',
+    options: {
+      presets: [
+        "@babel/preset-es2015",
+        ["@babel/preset-stage-2", { "decoratorsLegacy": true }],
+        "@babel/preset-react"
+      ],
+      plugins: [
+        ["@babel/plugin-proposal-decorators", { "legacy": true }],
+        "@babel/plugin-transform-async-to-generator",
+        "transform-export-extensions",
+        "@babel/plugin-transform-runtime"
+      ]
+    }
+  }
 }
 const CSS_LOADER = isProduction => ({
   test: /\.css$/,
@@ -96,7 +112,7 @@ const PCSS_LOADER = isProduction => ({
       loader: 'postcss-loader',
       options: {
         config: {
-          path: './postcss.config.js'
+          path: `${__dirname}/postcss.config.js`
         }
       }
     }
@@ -107,8 +123,6 @@ module.exports = (env, { mode, analyze }) => {
   const isProduction = mode === 'production'
   const devtool = isProduction ? '' : 'source-map'
   const plugins = isProduction ? productionPlugins : developmentPlugins
-
-  // console.log('what', mode, isProduction)
 
   if (analyze) {
     plugins.push(new BundleAnalyzerPlugin({ analyzerPort: 0 }))

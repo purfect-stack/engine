@@ -10,13 +10,29 @@ I found myself doing porting and improving of webpack and babel configurations b
 
 Abstract away webpack and babel configuration under single package. Manage all versions, configuration and setup in a single place and ship all updates via single package update.
 
+## How to start?
+
+1. `npm install --save @purfect/engine` or `yarn add @purfect/engine`
+2. In your project's `package.json` add these scripts
+```
+"scripts": {
+  "start": "purfect-engine start",
+  "start:prod": "purfect-engine start:prod",
+  "build": "purfect-engine build"
+}
+```
+3. If you don't have `src` directory with `index.ejs` and `index.jsx` entry files yet, run `node_modules/.bin/purfect-engine init`
+4. Run `npm start` or `yarn start`
+5. Open url on which the app is running
+6. Start developing
+
 ## Features
 
-| Feature | Command |
+| Command | Feature |
 |---|---| 
-| Start development server locally | `purfect-engine start` | 
-| Start development server locally with production build | `purfect-engine start:prod` | 
-| Build deployable distribution | `purfect-engine build` |
+| `purfect-engine start` | Start development server locally | 
+| `purfect-engine start:prod` | Start development server locally with production build | 
+| `purfect-engine build` | Build deployable distribution |
 
 ### Development server
 
